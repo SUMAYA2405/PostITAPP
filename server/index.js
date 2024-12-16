@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(cors());
 
 //Database connection
-const connectString = "mongodb+srv://sumayahamed9115:1234@postitcluster.k4c7v.mongodb.net/postITDb?retryWrites=true&w=majority&appName=PostITCluster";
+const connectString = `mongodb+srv://${ENV.DB_USER}:${ENV.DB_PASSWORD}@${ENV.DB_CLUSTER}/${ENV.DB_NAME}?retryWrites=true&w=majority&appName=PostITCluster`;
 mongoose.connect(connectString);
 app.post("/registerUser", async (req, res) => {
     try {
