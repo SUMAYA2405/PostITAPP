@@ -16,7 +16,7 @@ export const registerUser = createAsyncThunk(
   "users/registerUser",
   async (userData, { rejectWithValue }) => {
     try {
-      const response = await axios.post("http://localhost:3001/registerUser", userData);
+      const response = await axios.post(`${ENV.SERVER_URL}/registerUser`, userData);
       return response.data.user;
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || error.message);
@@ -26,7 +26,7 @@ export const registerUser = createAsyncThunk(
 
 export const login = createAsyncThunk("users/login", async (userData, { rejectWithValue }) => {
   try {
-    const response = await axios.post("http://localhost:3001/login", userData);
+    const response = await axios.post(`${ENV.SERVER_URL}/login`, userData);
     return response.data.user;
   } catch (error) {
     return rejectWithValue("Invalid credentials");
@@ -35,7 +35,7 @@ export const login = createAsyncThunk("users/login", async (userData, { rejectWi
 
 export const logout = createAsyncThunk("users/logout", async (_, { rejectWithValue }) => {
   try {
-    await axios.post("http://localhost:3001/logout");
+    await axios.post(`${ENV.SERVER_URL}/logout`);
   } catch (error) {
     return rejectWithValue(error.response?.data?.message || "Logout failed");
   }
@@ -46,7 +46,7 @@ export const updateUserProfile = createAsyncThunk(
   async (userData, { rejectWithValue }) => {
     try {
       const response = await axios.put(
-        `http://localhost:3001/updateUserProfile/${userData.email}`,
+        `${ENV.SERVER_URL}/updateUserProfile/${userData.email}`,
         userData,
         { headers: { "Content-Type": "application/json" } }
       );
