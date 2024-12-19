@@ -15,7 +15,10 @@ const App = () => {
   return (
     <Router> 
       <Container fluid>
-        <Row>{email ? (<Header/>):null}</Row>
+        <Row>
+    {email ? (
+    <> <Header/></>
+    ):null}</Row>
         
         <Row className="main">
           <Routes>
